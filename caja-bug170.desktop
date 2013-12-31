@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=Caja-bug170
+GenericName=File Manager
+Exec=/replace/with/full/path/to/caja-bug170
+Icon=system-file-manager
+Terminal=false
+Type=Application
+StartupNotify=false
+NoDisplay=true
+# OnlyShowIn=MATE;
+X-MATE-Bugzilla-Bugzilla=MATE
+X-MATE-Bugzilla-Product=caja-bug170
+X-MATE-Bugzilla-Component=general
+X-MATE-Bugzilla-Version=1.7.0
+X-MATE-Autostart-Phase=Application
+X-MATE-Autostart-Notify=false
+X-MATE-AutoRestart=false
+X-MATE-Provides=bugseeker
