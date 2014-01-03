@@ -1,0 +1,25 @@
+# Example of ~/.xinitrc file for starting MATE with startx
+# Make changes according to your system.
+
+# only if MATE is installed in /usr/local
+# export XDG_CONFIG_DIRS=/usr/local/etc/xdg:/etc/xdg
+# export XDG_DATA_DIRS=/usr/local/share/mate:/usr/local/share:/usr/share:$XDG_DATA_DIRS
+# export GTK_DATA_PREFIX=/usr/local
+
+export DESKTOP_SESSION=mate
+export COLORTERM=mate-terminal
+export MATE_PANEL_DEBUG=1
+export CAJA_DEBUG=1
+#export G_DEBUG="fatal-criticals"
+
+# Open a terminal
+xterm &
+
+# you can also start caja-bug170 before MATE session management
+/tmp/caja-bug170 &
+
+# D-BUS should be started automatically
+#exec ck-launch-session dbus-launch mate-session --debug
+
+exec ck-launch-session mate-session --debug
+
