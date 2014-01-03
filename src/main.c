@@ -1,12 +1,31 @@
+#include "config.h"
 #include <eggsmclient.h>
 #include <gtk/gtk.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/timeb.h>
+#include <unistd.h>
+
+void log_gen(const char *func, const char *fmt, ...)
+{
+	FILE *fd = stderr;
+	struct timeb s_timeb;
+	ftime(&s_timeb);
+	struct tm *d = localtime(&s_timeb.time);
+	fprintf(fd, "%02d:%02d:%02d.%03u ", d->tm_hour, d->tm_min, d->tm_sec, s_timeb.millitm);
+	fprintf(fd,"[%s pid=%d func=%s] ", PACKAGE, getpid(), func);
+	va_list args;
+	va_start(args,fmt);
+	vfprintf(fd, fmt, args);
+	va_end(args);
+	fprintf(fd,"\n");
+}
 
 static void changed_callback(gpointer user_data)
 {
 	static int i = 0;
 	i++;
-	g_printerr("\n === CAJA BUG #170. xsmp + dconf + GSettings bug? count=%d\n\n", i);
+	log_gen("changed_callback", "=== CAJA BUG #170. xsmp + dconf + GSettings bug? count=%d", i);
 }
 
 int main(int argc, char *argv[])

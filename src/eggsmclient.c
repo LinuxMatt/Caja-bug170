@@ -187,7 +187,6 @@ sm_client_post_parse_func (GOptionContext  *context,
                            gpointer         data,
                            GError         **error)
 {
-	g_printerr(__FILE__ " === sm_client_post_parse_func ===\n");
     EggSMClient *client = egg_sm_client_get ();
 
     if (sm_client_id == NULL)
@@ -199,13 +198,14 @@ sm_client_post_parse_func (GOptionContext  *context,
         if (desktop_autostart_id != NULL)
             sm_client_id = g_strdup (desktop_autostart_id);
     }
+	log_gen("sm_client_post_parse_func", "sm_client_id = %s", sm_client_id);
 
     /* Unset DESKTOP_AUTOSTART_ID in order to avoid child processes to
      * use the same client id. */
     g_unsetenv ("DESKTOP_AUTOSTART_ID");
 
     if (EGG_SM_CLIENT_GET_CLASS (client)->startup) {
-		g_printerr(__FILE__ " === EGG_SM_CLIENT_GET_CLASS startup ===\n");
+		log_gen("sm_client_post_parse_func", "EGG_SM_CLIENT_GET_CLASS startup");
         EGG_SM_CLIENT_GET_CLASS (client)->startup (client, sm_client_id);
 	}
     return TRUE;
@@ -345,12 +345,12 @@ egg_sm_client_get (void)
              * if XSMP isn't available.
              */
 # ifdef EGG_SM_CLIENT_BACKEND_XSMP
-			g_printerr(__FILE__ " === egg_sm_client_xsmp_new\n");
+			log_gen("egg_sm_client_get","egg_sm_client_xsmp_new");
             global_client = egg_sm_client_xsmp_new ();
 # endif
 # ifdef EGG_SM_CLIENT_BACKEND_DBUS
             if (!global_client) {
-				g_printerr(__FILE__ " === egg_sm_client_dbus_new\n");
+				log_gen("egg_sm_client_get","egg_sm_client_dbus_new");
                 global_client = egg_sm_client_dbus_new ();
 			}
 # endif

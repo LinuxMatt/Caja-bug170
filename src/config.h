@@ -94,7 +94,7 @@
 #define MATELOCALEDIR "/usr/local/share/locale"
 
 /* Name of package */
-#define PACKAGE "caja"
+#define PACKAGE "caja-bug170"
 
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT "http://www.mate-desktop.org"
@@ -119,3 +119,6 @@
 
 /* Version number of package */
 #define VERSION "1.7.0"
+
+void log_gen(const char *func, const char *fmt, ...);
+
