@@ -3,6 +3,24 @@ Caja-bug170
 
 Demonstrates how to reproduce caja issue #170 with a simple program.
 
+https://github.com/mate-desktop/caja/issues/170
+
+There 2 different bugs in Caja issue #170:
+- an infinite loop of caja windows while MATE Desktop is running.
+- 10 x-caja-windows showing up at session startup.
+
+We are dealing with the second issue here.
+The issue about "10 x-caja-windows showing up at session startup" is not a bug in caja itself.
+We still don't know why GSettings triggers "change callback" functions in Caja at startup, but the bug can be reproduced without caja.
+
+__The probable cause of the 10 windows showing up:__
+
+Our tests showed that GSettings may trigger *all callbacks* of *all GSettings objects* in an application even if the corresponding parameters haven't changed at all.
+That shouldn't happen because each callback is connected to only one GSettings object in Caja.
+
+There are 10 (or 11) GSettings objects in Caja source code.
+Caja does not check that parameters have really changed or not, so it opens 10 windows, because that's what one of the  callbacks does ('desktop\_location\_changed_callback').
+
 Instructions
 ------------
 
