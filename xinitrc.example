@@ -15,7 +15,8 @@ export CAJA_DEBUG=1
 # Open a terminal
 xterm &
 
-# you can also start caja-bug170 before MATE session management
+# you can start caja-bug170 before MATE session management and also
+# as an AUTOSTART application with a .desktop file in /etc/xdg/autostart/
 /tmp/caja-bug170 &
 
 # D-BUS should be started automatically
