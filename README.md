@@ -5,6 +5,8 @@ Demonstrates how to reproduce caja issue #170 with a simple program.
 
 https://github.com/mate-desktop/caja/issues/170
 
+https://bugzilla.gnome.org/show_bug.cgi?id=721590
+
 There 2 different bugs in Caja issue #170:
 - an infinite loop of caja windows while MATE Desktop is running.
 - 10 x-caja-windows showing up at session startup.
